@@ -5,6 +5,7 @@ import {HiOutlineUserCircle} from 'react-icons/hi'
 import logo from '../assets/LOGO.png'
 import {useDispatch, useSelector} from 'react-redux'
 import { logoutRedux } from '../redux/userSlice';
+import {toast} from "react-hot-toast"
 
 
 function Header(props) {
@@ -18,6 +19,7 @@ function Header(props) {
     }
     const handleLogout=()=>{
         dispatch(logoutRedux())
+        toast('Logout sucessfully')
     }
     return (
         

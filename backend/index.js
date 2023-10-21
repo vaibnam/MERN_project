@@ -78,4 +78,31 @@ app.post("/login",(req,res)=>{
     })
 })
 
+//product schema
+
+const schemaProduct=mongoose.Schema({
+  name:String,
+  category:String,
+  image:String,
+  price:String,
+  description:String
+})
+const productModel=mongoose.model("products",schemaProduct)
+
+app.post('/uploaddata',async(req,res)=>{
+  console.log(req.body)
+  const data=await productModel(req.body)
+  const dataSave=await data.save()
+  
+  res.send({message:'upload sucessfulyy'})
+
+
+})
+app.get("/product",async(req,res)=>{
+
+  const data= await productModel.find({})
+  res.send(JSON.stringify(data))
+})
+
+
 app.listen(PORT,()=>console.log("server is running at port: "+ PORT ))
